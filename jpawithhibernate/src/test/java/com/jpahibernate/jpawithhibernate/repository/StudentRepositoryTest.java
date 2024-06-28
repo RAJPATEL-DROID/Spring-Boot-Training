@@ -28,11 +28,21 @@ class StudentRepositoryTest {
     @Test
     @Transactional
     void retrieveStudentAndPassportDetails() {
-        Student student= em.find(Student.class,200003L);
+        Student student= em.find(Student.class,20003L);
 
         logger.info("student -> {}",student);
 
         logger.info("passport -> {}",student.getPassport());
     }
 
+    @Test
+    @Transactional
+    void retrieveStudentAndCourses() {
+
+        Student student= em.find(Student.class,20003L);
+
+        logger.info("student -> {}",student);
+
+        logger.info("Courses -> {}",student.getCourses());
+    }
 }

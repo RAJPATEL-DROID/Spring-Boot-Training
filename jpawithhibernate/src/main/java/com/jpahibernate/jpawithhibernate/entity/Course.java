@@ -20,8 +20,29 @@ public class Course {
 
     private String name;
 
+    protected Course(){};
+
+    public Course(String name) {
+        this.name = name;
+    }
+
     @OneToMany(mappedBy="course")
     private List<Review> reviews = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "courses")
+    private List<Student> students = new ArrayList<>();
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
+    }
+
+    public void removeStudent(Student student) {
+        this.students.remove(student);
+    }
 
     public void addReview(Review review) {
         this.reviews.add(review);
@@ -41,11 +62,6 @@ public class Course {
     @CreationTimestamp
     private LocalDateTime createdDate;
 
-    protected Course(){};
-
-    public Course(String name) {
-        this.name = name;
-    }
 
     public String getName() {
         return name;

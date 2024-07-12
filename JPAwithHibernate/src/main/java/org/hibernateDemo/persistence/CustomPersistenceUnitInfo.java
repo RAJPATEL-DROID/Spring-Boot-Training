@@ -48,7 +48,7 @@ public class CustomPersistenceUnitInfo implements PersistenceUnitInfo {
 
     @Override
     public List<String> getManagedClassNames() {
-        return List.of("org.hibernateDemo.entities.Car");
+        return List.of("org.hibernateDemo.entities.Book","org.hibernateDemo.entities.BookShop","org.hibernateDemo.entities.Author");
     }
 
     @Override

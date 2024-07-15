@@ -19,7 +19,7 @@ public class ProductService {
         throw new RuntimeException("rollback");
     }
 
-    @Transactional(rol)
+    @Transactional()
     public void addTenProduct(){
         for (int i=0; i<10;i++) {
             repository.addProduct("Product" + i);

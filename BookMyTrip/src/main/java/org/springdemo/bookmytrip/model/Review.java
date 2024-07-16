@@ -7,32 +7,32 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "reviews")
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "comment", nullable = false)
-    private String comment;
-
-    @Column(name = "rating", nullable = false, precision = 2, scale = 1)
-    private BigDecimal rating;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "trip_package_id")
     private TripPackage tripPackage;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private int rating;
+    private String comment;
+    private LocalDateTime reviewDate;
 
-    public Review(BigDecimal rating, String comment, TripPackage tripPackage, Customer customer) {
+    public Review(int rating, String comment, TripPackage tripPackage, Customer customer) {
         this.rating = rating;
         this.comment = comment;
         this.tripPackage = tripPackage;

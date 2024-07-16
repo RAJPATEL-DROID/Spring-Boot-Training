@@ -5,6 +5,7 @@ import lombok.*;
 
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -12,34 +13,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "trip_package")
 public class TripPackage {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    @Column(name="trip_name",nullable = false)
-    String tripName;
-
-    @Column(name = "description",nullable = false)
-    String description;
-
-    @Column(name = "price",nullable = false)
-    BigDecimal price;
+    private String title;
+    private String description;
+    private BigDecimal price;
 
     @OneToMany(mappedBy = "tripPackage", cascade = CascadeType.ALL)
-    private List<Itinerary> itineraries;
+    private List<Itinerary> itineraries = new ArrayList<>();
 
-    @OneToMany(mappedBy = "tripPackage")
-    private List<Review> reviews;
+    @OneToMany(mappedBy = "tripPackage", cascade = CascadeType.ALL)
+    private List<Review> reviews = new ArrayList<>();
 
-//    @Override
-//    public String toString() {
-//        return "TripPackage{" +
-//                "id=" + id +
-//                ", tripName='" + tripName + '\'' +
-//                ", description='" + description + '\'' +
-//                ", price=" + price +
-//                '}';
-//    }
 }

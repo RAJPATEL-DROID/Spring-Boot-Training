@@ -7,22 +7,16 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "location")
+@Table(name = "locations")
 public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "location_id",nullable = false)
-    Long id;
+    private Long id;
 
-    @Column(name = "city",nullable = false)
-    String city;
-
-    @Column(name = "country",nullable = false)
-    String country;
-
-    @Column(name = "airport_code",nullable = false)
-    String airportCode;
+    private String city;
+    private String country;
+    private String airportCode;
 
     public Location(String city,String country,String airportCode){
         this.city = city;

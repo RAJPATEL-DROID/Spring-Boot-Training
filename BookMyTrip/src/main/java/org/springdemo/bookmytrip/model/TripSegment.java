@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springdemo.bookmytrip.enums.SegmentType;
 
 
 @Getter
@@ -12,19 +13,19 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "trip_segment")
+@Table(name = "trip_segments")
 public abstract class TripSegment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    @Column(name = "segment_type",nullable = false)
-    SegmentType segmentType;
+    @Enumerated(EnumType.STRING)
+    private SegmentType segmentType;
 
     @ManyToOne
     @JoinColumn(name = "itinerary_id")
-    Itinerary itinerary;
+    private Itinerary itinerary;
 
     public TripSegment(SegmentType segmentType,Itinerary itinerary){
         this.segmentType = segmentType;

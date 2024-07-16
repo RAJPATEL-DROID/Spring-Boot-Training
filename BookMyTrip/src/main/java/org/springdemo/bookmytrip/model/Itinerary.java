@@ -15,24 +15,22 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "itineraries")
 public class Itinerary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    @Column(name = "starting_date",nullable = false)
-    LocalDate startDate;
-
-    @Column(name = "last_date",nullable = false)
-    LocalDate lastDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @ManyToOne
     @JoinColumn(name="trip_package_id")
-    TripPackage tripPackage;
+    private TripPackage tripPackage;
 
     @OneToMany(mappedBy = "itinerary", cascade = CascadeType.ALL)
-    List<TripSegment> tripSegments = new ArrayList<>();
+    private List<TripSegment> tripSegments = new ArrayList<>();
 
 
 }

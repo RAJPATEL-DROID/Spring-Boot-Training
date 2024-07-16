@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter @Setter
@@ -17,17 +18,16 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    @Column(name = "name",nullable = false)
-    String name;
+    private String name;
+    private String email;
 
-    @Column(name = "email_id",nullable = false)
-    String email;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<>();
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
-    List<Booking> bookings;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Review> reviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
-    List<Review> reviews;
+
 }

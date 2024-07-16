@@ -5,33 +5,37 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springdemo.bookmytrip.enums.PaymentMethod;
+import org.springdemo.bookmytrip.enums.PaymentStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "payments")
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "payment_date",nullable = false)
-    private LocalDate paymentDate;
+    @OneToOne
+    @JoinColumn(name = "booking_id")
+    private Booking booking;
 
-    @Column(name = "payment_method",nullable = false)
-    private String paymentMethod;
+    private LocalDateTime paymentDate;
 
-    @Column(name = "amount", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod;
+
     private BigDecimal amount;
 
-    @Column(name = "status", nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus status;
 
-    @OneToOne
-    @JoinColumn(name = "booking_id",nullable = false)
-    private Booking booking;
+    // Getters, setters, and constructors
 }

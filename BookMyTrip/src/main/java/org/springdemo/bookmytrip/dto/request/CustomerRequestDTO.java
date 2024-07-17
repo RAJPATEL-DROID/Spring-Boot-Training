@@ -1,16 +1,18 @@
-package org.springdemo.bookmytrip.dto;
+package org.springdemo.bookmytrip.dto.request;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import  javax.validation.constraints.*;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDTO {
+public class CustomerRequestDTO {
 
     @NotBlank(message = "Name is required")
     private String name;

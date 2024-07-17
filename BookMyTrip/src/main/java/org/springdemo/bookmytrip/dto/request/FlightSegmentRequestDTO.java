@@ -1,12 +1,11 @@
-package org.springdemo.bookmytrip.model;
+package org.springdemo.bookmytrip.dto.request;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springdemo.bookmytrip.enums.SegmentType;
 
 import java.time.LocalDateTime;
 
@@ -14,25 +13,19 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "flight_segment")
-public class FlightSegment extends TripSegment {
+public class FlightSegmentRequestDTO{
 
-    @NotBlank(message = "Flight Number can't be blank")
+    private Long id;
+
+    private SegmentType segmentType = SegmentType.FLIGHT;
+
     private String flightNumber;
 
-    @NotNull
-    @Column(name = "departureLocation_id")
     private Long departureLocationId;
 
-    @NotNull
-    @Column(name = "arrival_location_id")
     private Long arrivalLocationId;
 
-    @NotNull
     private LocalDateTime departureTime;
 
-    @NotNull
     private LocalDateTime arrivalTime;
-
 }

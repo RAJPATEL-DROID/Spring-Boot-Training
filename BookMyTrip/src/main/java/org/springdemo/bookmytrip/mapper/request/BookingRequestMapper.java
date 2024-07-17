@@ -1,27 +1,28 @@
-package org.springdemo.bookmytrip.mapper;
+package org.springdemo.bookmytrip.mapper.request;
 
+import org.springdemo.bookmytrip.dto.request.BookingRequestDTO;
 import org.springdemo.bookmytrip.model.Booking;
 import org.springdemo.bookmytrip.model.Customer;
 import org.springdemo.bookmytrip.model.TripPackage;
 
-public class BookingMapper {
+public class BookingRequestMapper {
 
-    public static BookingDTO toDTO(Booking booking) {
-        if (booking == null) {
-            return null;
-        }
+//    public static BookingRequestDTO toDTO(Booking booking) {
+//        if (booking == null) {
+//            return null;
+//        }
+//
+//        BookingRequestDTO dto = new BookingRequestDTO();
+//        dto.setId(booking.getId());
+//        dto.setCustomerId(booking.getCustomer() != null ? booking.getCustomer().getId() : null);
+//        dto.setTravelPackageId(booking.getTripPackage() != null ? booking.getTripPackage().getId() : null);
+//        dto.setBookingDate(booking.getBookingDate());
+//        dto.setStatus(booking.getStatus());
+//
+//        return dto;
+//    }
 
-        BookingDTO dto = new BookingDTO();
-        dto.setId(booking.getId());
-        dto.setCustomerId(booking.getCustomer() != null ? booking.getCustomer().getId() : null);
-        dto.setTravelPackageId(booking.getTripPackage() != null ? booking.getTripPackage().getId() : null);
-        dto.setBookingDate(booking.getBookingDate());
-        dto.setStatus(booking.getStatus());
-
-        return dto;
-    }
-
-    public static Booking toEntity(BookingDTO dto) {
+    public static Booking toEntity(BookingRequestDTO dto) {
         if (dto == null) {
             return null;
         }

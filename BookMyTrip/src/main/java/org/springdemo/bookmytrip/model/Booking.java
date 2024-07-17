@@ -26,7 +26,7 @@ public class Booking {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "trip_package_id")
     private TripPackage tripPackage;
 

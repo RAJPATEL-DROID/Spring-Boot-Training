@@ -1,4 +1,4 @@
-package org.springdemo.bookmytrip.dto;
+package org.springdemo.bookmytrip.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LocationDTO {
+public class LocationResponseDTO {
 
+    private Long id;
     private String city;
     private String country;
     private String airportCode;

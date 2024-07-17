@@ -1,10 +1,7 @@
 package org.springdemo.bookmytrip.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,6 +28,5 @@ public class Itinerary {
 
     @OneToMany(mappedBy = "itinerary", cascade = CascadeType.ALL)
     private List<TripSegment> tripSegments = new ArrayList<>();
-
 
 }

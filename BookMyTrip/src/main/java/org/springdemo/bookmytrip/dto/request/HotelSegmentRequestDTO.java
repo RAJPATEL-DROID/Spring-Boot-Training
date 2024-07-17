@@ -1,9 +1,10 @@
-package org.springdemo.bookmytrip.dto;
+package org.springdemo.bookmytrip.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springdemo.bookmytrip.enums.SegmentType;
 
 import java.time.LocalDate;
 
@@ -11,11 +12,14 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class HotelSegmentDTO extends TripSegmentDTO {
+public class HotelSegmentRequestDTO{
 
+    private Long id;
+    private SegmentType segmentType = SegmentType.FLIGHT;
     private String hotelName;
     private String address;
-    private LocationDTO location;
+    private Long locationId;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
+
 }

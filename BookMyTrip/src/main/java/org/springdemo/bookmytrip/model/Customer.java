@@ -1,6 +1,8 @@
 package org.springdemo.bookmytrip.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,11 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Name is required")
     private String name;
+
+    @Email
+    @NotBlank(message = "Valid Email is required")
     private String email;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)

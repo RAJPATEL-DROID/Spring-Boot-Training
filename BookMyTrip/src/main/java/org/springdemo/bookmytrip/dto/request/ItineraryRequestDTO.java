@@ -1,19 +1,18 @@
-package org.springdemo.bookmytrip.dto;
+package org.springdemo.bookmytrip.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItineraryDTO {
+public class ItineraryRequestDTO {
 
     @NotNull(message = "Travel Package ID is required")
     private Long travelPackageId;
@@ -23,7 +22,7 @@ public class ItineraryDTO {
 
     @NotNull(message = "End date is required")
     private LocalDate endDate;
-
-    @NotNull(message = "Trip Segments are Required")
-    private List<TripSegmentDTO> tripSegments;
+//
+//    @NotNull(message = "Trip Segments are Required")
+//    private List<TripSegmentDTO> tripSegments;
 }

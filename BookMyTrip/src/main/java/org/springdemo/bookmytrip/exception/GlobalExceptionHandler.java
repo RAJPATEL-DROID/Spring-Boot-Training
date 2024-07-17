@@ -1,5 +1,8 @@
 package org.springdemo.bookmytrip.exception;
 
+import jakarta.validation.ConstraintViolationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -12,6 +15,7 @@ import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+    Logger logger = LoggerFactory.getLogger("GlobalExceptionHandler");
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -28,5 +32,16 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<HashMap<String ,String >> constraintViolationException(ConstraintViolationException ex){
+        logger.info("Exception occured");
+        HashMap<String ,String> errors = new HashMap<>();
+
+        ex.getConstraintViolations().forEach(e -> errors.put(e.getPropertyPath().toString(),e.getMessage()));
+        errors.put("Status","Fail");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
 
 }

@@ -29,6 +29,8 @@ public class FlightController {
 
         List<FlightSegment> flightSegments = flightSegmentService.getAllFlightSegment();
 
+        System.out.println(flightSegments);
+
         List<FlightSegmentResponseDTO> flightSegmentResponseDTOS= flightSegments.stream().map(FlightSegmentResponseMapper::toDTO).toList();
 
         return ResponseEntity.ok(flightSegmentResponseDTOS);
@@ -59,7 +61,7 @@ public class FlightController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FlightSegmentResponseDTO> updateFlight(@RequestBody FlightSegmentRequestDTO flightSegmentRequestDTO,@PathVariable Long id)
+    public ResponseEntity<FlightSegmentResponseDTO> updateFlight(@PathVariable Long id,@Valid @RequestBody FlightSegmentRequestDTO flightSegmentRequestDTO)
     {
         FlightSegment flightSegment = FlightSegmentRequestMapper.toEntity(flightSegmentRequestDTO);
 
@@ -72,6 +74,7 @@ public class FlightController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFlight(@PathVariable Long id){
+
         flightSegmentService.deleteFlightSegment(id);
 
         return ResponseEntity.noContent().build();

@@ -16,6 +16,8 @@ public class FlightSegmentResponseMapper {
 
         dto.setId(entity.getId());
 
+        dto.setItinerary(ItineraryResponseMapper.toDTO(entity.getItinerary()));
+
         dto.setSegmentType(entity.getSegmentType());
 
         dto.setFlightNumber(entity.getFlightNumber());
@@ -24,9 +26,9 @@ public class FlightSegmentResponseMapper {
 
         dto.setArrivalTime(entity.getArrivalTime());
 
-        dto.setDepartureLocationId(entity.getDepartureLocationId());
+        dto.setDepartureLocation(entity.getDepartureLocation());
 
-        dto.setArrivalLocationId(entity.getArrivalLocationId());
+        dto.setArrivalLocation(entity.getArrivalLocation());
 
         return dto;
     }
@@ -39,6 +41,8 @@ public class FlightSegmentResponseMapper {
 
         entity.setId(dto.getId());
 
+        entity.setItinerary(ItineraryResponseMapper.toEntity(dto.getItinerary()));
+
         entity.setSegmentType(dto.getSegmentType());
 
         entity.setFlightNumber(dto.getFlightNumber());
@@ -47,9 +51,9 @@ public class FlightSegmentResponseMapper {
 
         entity.setArrivalTime(dto.getArrivalTime());
 
-        entity.setDepartureLocationId(dto.getDepartureLocationId());
+        entity.setDepartureLocation(dto.getDepartureLocation());
 
-        entity.setArrivalLocationId(dto.getArrivalLocationId());
+        entity.setArrivalLocation(dto.getArrivalLocation());
 
         return entity;
     }

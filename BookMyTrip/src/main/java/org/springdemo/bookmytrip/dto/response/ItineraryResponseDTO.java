@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
@@ -16,15 +15,9 @@ public class ItineraryResponseDTO {
 
     Long id;
 
-    @NotNull(message = "Travel Package ID is required")
-    private Long travelPackageId;
+    private TripPackageResponseDTO tripPackage;
 
-    @NotNull(message = "Start date is required")
     private LocalDate startDate;
 
-    @NotNull(message = "End date is required")
-    private LocalDate endDate;
-//
-//    @NotNull(message = "Trip Segments are Required")
-//    private List<TripSegmentDTO> tripSegments;
+    private LocalDate endDate;;
 }

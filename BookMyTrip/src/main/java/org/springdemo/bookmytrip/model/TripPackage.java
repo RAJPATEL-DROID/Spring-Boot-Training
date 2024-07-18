@@ -21,8 +21,10 @@ public class TripPackage {
 
     private String title;
     private String description;
+
     private BigDecimal price;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "tripPackage", cascade = CascadeType.ALL)
     private List<Itinerary> itineraries = new ArrayList<>();
 

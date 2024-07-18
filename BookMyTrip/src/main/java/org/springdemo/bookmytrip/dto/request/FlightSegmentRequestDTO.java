@@ -1,6 +1,7 @@
 package org.springdemo.bookmytrip.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,17 +16,23 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class FlightSegmentRequestDTO{
 
-    private Long id;
-
     private SegmentType segmentType = SegmentType.FLIGHT;
 
+    @NotNull
+    private Long itineraryId;
+
+    @NotNull
     private String flightNumber;
 
+    @NotNull
     private Long departureLocationId;
 
+    @NotNull
     private Long arrivalLocationId;
 
+    @NotNull
     private LocalDateTime departureTime;
 
+    @NotNull
     private LocalDateTime arrivalTime;
 }

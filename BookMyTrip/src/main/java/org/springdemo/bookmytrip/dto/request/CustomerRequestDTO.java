@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CustomerRequestDTO {
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Name can't be blank")
     private String name;
 
     @NotBlank(message = "Email is required")

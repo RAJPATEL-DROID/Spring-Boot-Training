@@ -1,14 +1,10 @@
-package org.springdemo.bookmytrip.service;
+package org.springdemo.bookmytrip.service.implementation;
 
 
-import jakarta.annotation.Resource;
-import org.springdemo.bookmytrip.dto.request.CustomerRequestDTO;
-import org.springdemo.bookmytrip.dto.response.CustomerResponseDTO;
 import org.springdemo.bookmytrip.exception.ResourceNotFoundException;
-import org.springdemo.bookmytrip.mapper.request.CustomerRequestMapper;
-import org.springdemo.bookmytrip.mapper.response.CustomerResponseMapper;
 import org.springdemo.bookmytrip.model.Customer;
 import org.springdemo.bookmytrip.repository.CustomerRepository;
+import org.springdemo.bookmytrip.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

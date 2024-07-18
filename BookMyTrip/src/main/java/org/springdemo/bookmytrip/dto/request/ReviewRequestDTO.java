@@ -26,6 +26,7 @@ public class ReviewRequestDTO {
     @Max(value = 5, message = "Rating must be between 1 and 5")
     private Integer rating;
 
+    @NotNull
     private String comment;
 
     @NotNull(message = "Review date is required")

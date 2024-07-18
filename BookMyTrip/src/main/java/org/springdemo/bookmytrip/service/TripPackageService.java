@@ -9,15 +9,20 @@ import java.util.List;
 
 @Service
 public interface TripPackageService {
-    
-    TripPackage createTripPackage(TripPackage travelPackageDTO);
+
+    TripPackage createTripPackage(TripPackage tripPackage);
+
     TripPackage getTripPackageById(Long id);
-    TripPackage updateTripPackage(Long id, TripPackage travelPackageDTO);
+
+    List<TripPackage> getAllTripPackage();
+
+    TripPackage updateTripPackage(Long id, TripPackage tripPackage);
+
     void deleteTripPackage(Long id);
 
     List<TripPackage> getTripPackagesByMaxPrice(BigDecimal maxPrice);
-    
-    List<TripPackage> getAllTripPackage();
-    List<TripPackage> getPackagesWithinDateRange(LocalDate startDate, LocalDate endDate);
+
+//    List<TripPackage> getPackagesWithinDateRange(LocalDate startDate, LocalDate endDate);
+
     List<TripPackage> getPackagesByPriceRangeAndLocation(BigDecimal minPrice, BigDecimal maxPrice, String location);
 }

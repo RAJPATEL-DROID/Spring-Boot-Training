@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/travel-package")
+@RequestMapping("/api/trip-package")
 public class TripPackageController {
 
     private final TripPackageService tripPackageService;
@@ -30,17 +30,20 @@ public class TripPackageController {
 
     @PostMapping
     public ResponseEntity<TripPackageResponseDTO> createTripPackage(@Valid @RequestBody TripPackageRequestDTO tripPackageRequestDTO) {
+
         TripPackage tripPackage = TripPackageRequestMapper.toEntity(tripPackageRequestDTO);
 
-        TripPackage responseTripPackage = tripPackageService.createTripPackage(tripPackage);
+        TripPackage responseTripPackage = this.tripPackageService.createTripPackage(tripPackage);
 
         TripPackageResponseDTO tripPackageDTOS = TripPackageResponseMapper.toDTO(responseTripPackage);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(tripPackageDTOS);
+
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<TripPackageResponseDTO> getTripPackage(@PathVariable Long id) {
+
         TripPackage responseTripPackage= tripPackageService.getTripPackageById(id);
 
         TripPackageResponseDTO tripPackage = TripPackageResponseMapper.toDTO(responseTripPackage);
@@ -53,11 +56,12 @@ public class TripPackageController {
 
         TripPackage tripPackage = TripPackageRequestMapper.toEntity(tripPackageRequestDTO);
 
-        TripPackage responseTripPackage = tripPackageService.updateTripPackage(id, tripPackage);
+        TripPackage responseTripPackage = this.tripPackageService.updateTripPackage(id, tripPackage);
 
         TripPackageResponseDTO tripPackageDTOS = TripPackageResponseMapper.toDTO(responseTripPackage);
 
         return ResponseEntity.ok(tripPackageDTOS);
+
     }
 
     @DeleteMapping("/{id}")
@@ -68,6 +72,7 @@ public class TripPackageController {
 
     @GetMapping
     public ResponseEntity<List<TripPackageResponseDTO>> getAllTripPackages() {
+
         List<TripPackage> tripPackages = tripPackageService.getAllTripPackage();
 
         List<TripPackageResponseDTO> tripPackageResponseDTOS = tripPackages.stream().map(TripPackageResponseMapper::toDTO).toList();
@@ -75,17 +80,17 @@ public class TripPackageController {
         return ResponseEntity.ok(tripPackageResponseDTOS);
     }
 
-    @GetMapping("/date-range")
-    public ResponseEntity<List<TripPackageResponseDTO>> getPackagesWithinDateRange(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
-
-        List<TripPackage> tripPackages = tripPackageService.getPackagesWithinDateRange(startDate, endDate);
-
-        List<TripPackageResponseDTO> tripPackageResponseDTOS = tripPackages.stream().map(TripPackageResponseMapper::toDTO).toList();
-
-        return ResponseEntity.ok(tripPackageResponseDTOS);
-    }
+//    @GetMapping("/date-range")
+//    public ResponseEntity<List<TripPackageResponseDTO>> getPackagesWithinDateRange(
+//            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+//            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+//
+//        List<TripPackage> tripPackages = tripPackageService.getPackagesWithinDateRange(startDate, endDate);
+//
+//        List<TripPackageResponseDTO> tripPackageResponseDTOS = tripPackages.stream().map(TripPackageResponseMapper::toDTO).toList();
+//
+//        return ResponseEntity.ok(tripPackageResponseDTOS);
+//    }
 
     @GetMapping("/price-location")
     public ResponseEntity<List<TripPackageResponseDTO>> getPackagesByPriceRangeAndLocation(

@@ -1,11 +1,11 @@
 package org.springdemo.bookmytrip.controller;
 
+import jakarta.validation.Valid;
 import org.springdemo.bookmytrip.dto.request.ReviewRequestDTO;
 import org.springdemo.bookmytrip.dto.response.ReviewResponseDTO;
 import org.springdemo.bookmytrip.mapper.response.ReviewResponseMapper;
 import org.springdemo.bookmytrip.model.Review;
 import org.springdemo.bookmytrip.service.ReviewService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +20,9 @@ public class ReviewController {
     }
 
     @PostMapping("/{review_id}/review")
-    public ResponseEntity<ReviewResponseDTO> addReview(@PathVariable Long review_id, @RequestBody ReviewRequestDTO requestDTO){
+    public ResponseEntity<ReviewResponseDTO> addReview(@PathVariable Long review_id, @Valid @RequestBody ReviewRequestDTO requestDTO){
 
-        Review review = reviewService.createReview(review_id,requestDTO);
+        Review review = this.reviewService.createReview(review_id,requestDTO);
 
         ReviewResponseDTO reviewResponseDTO =  ReviewResponseMapper.toDTO(review);
 

@@ -13,6 +13,7 @@ import java.util.List;
 public interface TripPackageRepository extends JpaRepository<TripPackage,Long> {
     List<TripPackage> findByPriceLessThanEqual(BigDecimal maxPrice);
 
-    @Query("SELECT tp FROM TripPackage tp JOIN tp.itineraries i WHERE i.startDate >= :startDate AND i.endDate <= :endDate")
-    List<TripPackage> findPackagesWithinDateRange(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+////    @Query("SELECT tp FROM TripPackage tp JOIN Itinerary.tripPackage WHERE Itinerary.startDate >= :startDate AND Itinerary.endDate <= :endDate")
+//    List<TripPackage> findPackagesWithinDateRange(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 }
+// itineraries.startDate >= :startDate AND itineraries.endDate <= :endDate

@@ -1,5 +1,6 @@
 package org.springdemo.bookmytrip.controller;
 
+import jakarta.validation.Valid;
 import org.springdemo.bookmytrip.dto.request.LocationRequestDTO;
 import org.springdemo.bookmytrip.dto.response.LocationResponseDTO;
 import org.springdemo.bookmytrip.mapper.request.LocationRequestMapper;
@@ -32,10 +33,10 @@ public class LocationController {
     }
 
     @PostMapping
-    public ResponseEntity<LocationResponseDTO> addLocation(@RequestBody LocationRequestDTO requestLocation){
+    public ResponseEntity<LocationResponseDTO> addLocation(@Valid @RequestBody LocationRequestDTO requestLocation){
         Location location = LocationRequestMapper.toEntity(requestLocation);
 
-        Location locationResponse =  locationService.addLocation(location);
+        Location locationResponse =  this.locationService.addLocation(location);
 
         LocationResponseDTO locationResponseDTOS= LocationResponseMapper.toDTO(locationResponse);
 
@@ -45,16 +46,16 @@ public class LocationController {
     @GetMapping("/{id}")
     public ResponseEntity<LocationResponseDTO> getLocation(@PathVariable Long id){
 
-        LocationResponseDTO location = LocationResponseMapper.toDTO(locationService.getLocation(id));
+        LocationResponseDTO location = LocationResponseMapper.toDTO(this.locationService.getLocation(id));
 
         return ResponseEntity.ok(location);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<LocationResponseDTO> updateLocation(@PathVariable Long id, @RequestBody LocationRequestDTO requestLocation){
+    public ResponseEntity<LocationResponseDTO> updateLocation(@PathVariable Long id,@Valid @RequestBody LocationRequestDTO requestLocation){
         Location location = LocationRequestMapper.toEntity(requestLocation);
 
-        Location responseLocation = locationService.updateLocation(id,location);
+        Location responseLocation = this.locationService.updateLocation(id,location);
 
         LocationResponseDTO locationResponseDTO = LocationResponseMapper.toDTO(responseLocation);
 
@@ -63,6 +64,7 @@ public class LocationController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteLocation(@PathVariable Long id){
+
         locationService.removeLocation(id);
 
         return ResponseEntity.noContent().build();

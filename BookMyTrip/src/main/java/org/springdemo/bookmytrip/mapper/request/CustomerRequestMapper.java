@@ -8,22 +8,6 @@ import java.util.ArrayList;
 
 public class CustomerRequestMapper {
 
-//    public static CustomerRequestDTO toDTO(Customer customer) {
-//        if (customer == null) {
-//            return null;
-//        }
-//
-//        CustomerResponseDTO dto = new CustomerResponseDTO();
-//        dto.setId(customer.getId());
-//        dto.setName(customer.getName());
-//        dto.setEmail(customer.getEmail());
-//
-//        dto.setBookingResponseDTOList(customer.getBookings().stream().map(BookingRequestMapper::toDTO).toList());
-//
-//        dto.setReviewResponseDTOSList(customer.getReviews().stream().map(ReviewRequestMapper::toDTO).toList());
-//        return dto;
-//    }
-
     public static Customer toEntity(CustomerRequestDTO dto) {
         if (dto == null) {
             return null;

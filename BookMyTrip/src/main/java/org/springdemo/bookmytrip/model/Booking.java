@@ -32,12 +32,5 @@ public class Booking {
 
     private LocalDateTime bookingDate;
 
-    @Enumerated(EnumType.STRING)
-    private BookingStatus status;
-
-    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
-    private Payment payment;
-
-
 }
 

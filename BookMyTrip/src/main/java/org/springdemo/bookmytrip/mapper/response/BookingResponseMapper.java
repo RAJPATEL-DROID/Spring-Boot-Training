@@ -8,6 +8,8 @@ import org.springdemo.bookmytrip.model.TripPackage;
 
 public class BookingResponseMapper {
 
+    private BookingResponseMapper(){}
+
     public static BookingResponseDTO toDTO(Booking booking) {
         if (booking == null) {
             return null;
@@ -15,10 +17,9 @@ public class BookingResponseMapper {
 
         BookingResponseDTO dto = new BookingResponseDTO();
         dto.setId(booking.getId());
-        dto.setCustomerId(booking.getCustomer() != null ? booking.getCustomer().getId() : null);
-        dto.setTravelPackageId(booking.getTripPackage() != null ? booking.getTripPackage().getId() : null);
+        dto.setCustomer(CustomerResponseMapper.toDTO(booking.getCustomer()));
+        dto.setTripPackage(TripPackageResponseMapper.toDTO(booking.getTripPackage()));
         dto.setBookingDate(booking.getBookingDate());
-        dto.setStatus(booking.getStatus());
 
         return dto;
     }
@@ -31,20 +32,9 @@ public class BookingResponseMapper {
         Booking booking = new Booking();
         booking.setId(dto.getId());
         booking.setBookingDate(dto.getBookingDate());
-        booking.setStatus(dto.getStatus());
+        booking.setCustomer(CustomerResponseMapper.toEntity(dto.getCustomer()));
+        booking.setTripPackage(TripPackageResponseMapper.toEntity(dto.getTripPackage()));
 
-        // Set customer and tripPackage references
-        if (dto.getCustomerId() != null) {
-            Customer customer = new Customer();
-            customer.setId(dto.getCustomerId());
-            booking.setCustomer(customer);
-        }
-
-        if (dto.getTravelPackageId() != null) {
-            TripPackage tripPackage = new TripPackage();
-            tripPackage.setId(dto.getTravelPackageId());
-            booking.setTripPackage(tripPackage);
-        }
 
         return booking;
     }

@@ -12,7 +12,7 @@ public class ItineraryResponseMapper {
 
         ItineraryResponseDTO dto = new ItineraryResponseDTO();
         dto.setId(itinerary.getId());
-        dto.setTravelPackageId(itinerary.getTripPackage() != null ? itinerary.getTripPackage().getId() : null);
+        dto.setTripPackage(TripPackageResponseMapper.toDTO(itinerary.getTripPackage()));
         dto.setStartDate(itinerary.getStartDate());
         dto.setEndDate(itinerary.getEndDate());
 
@@ -28,12 +28,7 @@ public class ItineraryResponseMapper {
         itinerary.setId(dto.getId());
         itinerary.setStartDate(dto.getStartDate());
         itinerary.setEndDate(dto.getEndDate());
-
-        if (dto.getTravelPackageId() != null) {
-            TripPackage tripPackage = new TripPackage();
-            tripPackage.setId(dto.getTravelPackageId());
-            itinerary.setTripPackage(tripPackage);
-        }
+        itinerary.setTripPackage(TripPackageResponseMapper.toEntity(dto.getTripPackage()));
 
         return itinerary;
     }

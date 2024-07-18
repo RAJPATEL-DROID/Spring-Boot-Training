@@ -1,5 +1,6 @@
 package org.springdemo.bookmytrip.service;
 ;
+
 import org.springdemo.bookmytrip.model.Location;
 
 import java.util.List;

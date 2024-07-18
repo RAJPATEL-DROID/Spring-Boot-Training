@@ -22,7 +22,5 @@ public class ItineraryRequestDTO {
 
     @NotNull(message = "End date is required")
     private LocalDate endDate;
-//
-//    @NotNull(message = "Trip Segments are Required")
-//    private List<TripSegmentDTO> tripSegments;
+
 }

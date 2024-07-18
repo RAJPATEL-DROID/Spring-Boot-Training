@@ -5,13 +5,15 @@ import org.springdemo.bookmytrip.model.HotelSegment;
 
 public class HotelSegmentResponseMapper{
 
-    public HotelSegmentResponseDTO toDTO(HotelSegment entity) {
+    public static HotelSegmentResponseDTO toDTO(HotelSegment entity) {
         if (entity == null) {
             return null;
         }
         HotelSegmentResponseDTO dto = new HotelSegmentResponseDTO();
 
         dto.setId(entity.getId());
+
+        dto.setItinerary(ItineraryResponseMapper.toDTO(entity.getItinerary()));
 
         dto.setSegmentType(entity.getSegmentType());
 
@@ -23,12 +25,12 @@ public class HotelSegmentResponseMapper{
 
         dto.setCheckOutDate(entity.getCheckOutDate());
 
-        dto.setLocationId(entity.getLocationId());
+        dto.setLocation(entity.getLocation());
 
         return dto;
     }
 
-    public HotelSegment toEntity(HotelSegmentResponseDTO dto) {
+    public static HotelSegment toEntity(HotelSegmentResponseDTO dto) {
 
         if (dto == null) {
             return null;
@@ -37,6 +39,8 @@ public class HotelSegmentResponseMapper{
         HotelSegment entity = new HotelSegment();
 
         entity.setId(dto.getId());
+
+        entity.setItinerary(ItineraryResponseMapper.toEntity(dto.getItinerary()));
 
         entity.setSegmentType(dto.getSegmentType());
 
@@ -48,7 +52,7 @@ public class HotelSegmentResponseMapper{
 
         entity.setCheckOutDate(dto.getCheckOutDate());
 
-        entity.setLocationId(dto.getLocationId());
+        entity.setLocation(dto.getLocation());
 
         return entity;
     }

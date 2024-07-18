@@ -1,8 +1,6 @@
 package org.springdemo.bookmytrip.service;
 
 
-import org.springdemo.bookmytrip.dto.request.CustomerRequestDTO;
-import org.springdemo.bookmytrip.dto.response.CustomerResponseDTO;
 import org.springdemo.bookmytrip.model.Customer;
 
 import java.util.List;

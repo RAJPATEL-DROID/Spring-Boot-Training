@@ -28,9 +28,4 @@ public abstract class TripSegment {
     @JoinColumn(name = "itinerary_id")
     private Itinerary itinerary;
 
-    public TripSegment(SegmentType segmentType,Itinerary itinerary){
-        this.segmentType = segmentType;
-        this.itinerary = itinerary;
-    }
-
 }

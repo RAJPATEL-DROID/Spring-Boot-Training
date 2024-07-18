@@ -21,18 +21,20 @@ public class FlightSegment extends TripSegment {
     @NotBlank(message = "Flight Number can't be blank")
     private String flightNumber;
 
-    @NotNull
-    @Column(name = "departureLocation_id")
-    private Long departureLocationId;
+    @ManyToOne
+    @NotNull(message = "Departure Location is Required")
+    @JoinColumn(name = "departureLocation_id")
+    private Location departureLocation;
 
-    @NotNull
-    @Column(name = "arrival_location_id")
-    private Long arrivalLocationId;
+    @ManyToOne
+    @NotNull(message = "Arrival Location is Required")
+    @JoinColumn(name = "arrival_location_id")
+    private Location arrivalLocation;
 
-    @NotNull
+    @NotNull(message = "Departure Time is Required")
     private LocalDateTime departureTime;
 
-    @NotNull
+    @NotNull(message = "Arrival Time is required")
     private LocalDateTime arrivalTime;
 
 }

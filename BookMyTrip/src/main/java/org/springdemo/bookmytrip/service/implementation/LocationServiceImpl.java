@@ -1,14 +1,15 @@
-package org.springdemo.bookmytrip.service;
+package org.springdemo.bookmytrip.service.implementation;
 
 import org.springdemo.bookmytrip.exception.ResourceNotFoundException;
 import org.springdemo.bookmytrip.model.Location;
 import org.springdemo.bookmytrip.repository.LocationRepository;
+import org.springdemo.bookmytrip.service.LocationService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class LocationServiceImpl implements LocationService{
+public class LocationServiceImpl implements LocationService {
 
     LocationRepository locationRepository;
 
@@ -29,9 +30,7 @@ public class LocationServiceImpl implements LocationService{
 
     @Override
     public Location getLocation(Long id) {
-        Location location = locationRepository.findById(id).orElseThrow(() ->new ResourceNotFoundException("No Location Found with id " + id));
-
-        return location;
+        return locationRepository.findById(id).orElseThrow(() ->new ResourceNotFoundException("No Location Found with id " + id));
     }
  
     @Override
@@ -51,7 +50,9 @@ public class LocationServiceImpl implements LocationService{
 
     @Override
     public void removeLocation(Long id) {
+        if(locationRepository.existsById(id)){
 
-        locationRepository.deleteById(id);
+            locationRepository.deleteById(id);
+        }
     }
 }

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springdemo.bookmytrip.enums.BookingStatus;
 import jakarta.validation.constraints.NotNull;
+import org.springdemo.bookmytrip.model.Customer;
+
 import java.time.LocalDateTime;
 
 @Getter
@@ -16,16 +18,11 @@ import java.time.LocalDateTime;
 public class BookingResponseDTO {
     private Long id;
 
-    @NotNull(message = "Customer ID is required")
-    private Long customerId;
+    private CustomerResponseDTO customer;
 
-    @NotNull(message = "Travel Package ID is required")
-    private Long travelPackageId;
+    private TripPackageResponseDTO tripPackage;
 
-    @NotNull(message = "Booking date is required")
     private LocalDateTime bookingDate;
 
-    @NotNull(message = "Booking status is required")
-    private BookingStatus status;
 
 }

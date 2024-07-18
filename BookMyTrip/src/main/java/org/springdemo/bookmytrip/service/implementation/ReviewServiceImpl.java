@@ -1,4 +1,4 @@
-package org.springdemo.bookmytrip.service;
+package org.springdemo.bookmytrip.service.implementation;
 
 import org.springdemo.bookmytrip.dto.request.ReviewRequestDTO;
 import org.springdemo.bookmytrip.exception.ResourceNotFoundException;
@@ -6,13 +6,16 @@ import org.springdemo.bookmytrip.model.Customer;
 import org.springdemo.bookmytrip.model.Review;
 import org.springdemo.bookmytrip.model.TripPackage;
 import org.springdemo.bookmytrip.repository.ReviewRepository;
+import org.springdemo.bookmytrip.service.CustomerService;
+import org.springdemo.bookmytrip.service.ReviewService;
+import org.springdemo.bookmytrip.service.TripPackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ReviewServiceImpl implements ReviewService{
+public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
     private final CustomerService customerService;
     private final TripPackageService tripPackageService;
@@ -25,7 +28,7 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public Review createReview(Long id,ReviewRequestDTO reviewRequestDTO) {
+    public Review createReview(Long id, ReviewRequestDTO reviewRequestDTO) {
 
         Customer customer = customerService.getCustomerById(id);
 
@@ -63,7 +66,9 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public void deleteReview(Long id) {
-        reviewRepository.deleteById(id);
+        if(reviewRepository.existsById(id)){
+            reviewRepository.deleteById(id);
+        }
     }
 
     @Override
